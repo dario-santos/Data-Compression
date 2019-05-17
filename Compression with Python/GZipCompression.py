@@ -10,7 +10,7 @@ extension = ".gz"
 def compress(file_path: str, data_unit: ConvertTo.DataUnits):
     """Compress using the GZip algorithm."""
 
-    log = open("log_compress.txt", "w")
+    log = open("GZip" +file_path + ".txt", "a")
     f_input = open(file_path, 'rb')
 
     for i in range(min_compression_level, max_compression_level + 1):
@@ -24,7 +24,7 @@ def compress(file_path: str, data_unit: ConvertTo.DataUnits):
         f_input.seek(0)
         f_output.close()
 
-        log.write(str(i) + " " + str(ConvertTo.byte_to(os.path.getsize(f_output_path), data_unit)) + " " + str("{0:.2f}".format(time.time() - start_timer)) + " GZIP\n")
+        log.write(str(i) + " " + str(ConvertTo.byte_to(os.path.getsize(f_output_path), data_unit)) + " " + str("{0:.2f}".format(time.time() - start_timer)) + " Python\n")
 
     f_input.close()
     log.close()

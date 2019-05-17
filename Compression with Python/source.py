@@ -34,6 +34,9 @@ def __main__():
     if file_path == None:
         return -1 
 
+    #Buscar apenas o nome do ficheiro para a descompressão
+    #os.path.basename(your_path)
+
     GZip.compress(file_path, DataUnits.Byte)
     BZip2.compress(file_path, DataUnits.Byte)
     

@@ -14,13 +14,13 @@ namespace Compression
             string fInputPath = EvaluateFilePath(args);
             if(fInputPath.Equals(null))
                 return -1;
-
+            
             FileInfo fInput = new FileInfo(fInputPath);
             if(fInput.Equals(null))
                 return -1;
 
-            gzip.Compress(fInput, DataUnits.MegaByte);
-            bzip2.Compress(fInput, DataUnits.MegaByte);
+            gzip.Compress(fInput, DataUnits.KiloByte);
+            bzip2.Compress(fInput, DataUnits.KiloByte);
 
             gzip.Decompress(fInput.Name);
             bzip2.Decompress(fInput.Name);
