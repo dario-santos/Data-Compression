@@ -30,7 +30,7 @@
         {
             this.buttonStart = new System.Windows.Forms.Button();
             this.checkBoxCSCompression = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxPythonCompression = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -47,6 +47,8 @@
             // checkBoxCSCompression
             // 
             this.checkBoxCSCompression.AutoSize = true;
+            this.checkBoxCSCompression.Checked = true;
+            this.checkBoxCSCompression.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxCSCompression.Location = new System.Drawing.Point(77, 141);
             this.checkBoxCSCompression.Name = "checkBoxCSCompression";
             this.checkBoxCSCompression.Size = new System.Drawing.Size(110, 17);
@@ -54,15 +56,17 @@
             this.checkBoxCSCompression.Text = "Compress with c#";
             this.checkBoxCSCompression.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // checkBoxPythonCompression
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(77, 173);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(129, 17);
-            this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "Compress with python";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBoxPythonCompression.AutoSize = true;
+            this.checkBoxPythonCompression.Checked = true;
+            this.checkBoxPythonCompression.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxPythonCompression.Location = new System.Drawing.Point(77, 173);
+            this.checkBoxPythonCompression.Name = "checkBoxPythonCompression";
+            this.checkBoxPythonCompression.Size = new System.Drawing.Size(129, 17);
+            this.checkBoxPythonCompression.TabIndex = 2;
+            this.checkBoxPythonCompression.Text = "Compress with python";
+            this.checkBoxPythonCompression.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -79,7 +83,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(483, 450);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.checkBoxPythonCompression);
             this.Controls.Add(this.checkBoxCSCompression);
             this.Controls.Add(this.buttonStart);
             this.Name = "Form1";
@@ -93,7 +97,7 @@
 
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.CheckBox checkBoxCSCompression;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBoxPythonCompression;
         private System.Windows.Forms.Label label1;
     }
 }

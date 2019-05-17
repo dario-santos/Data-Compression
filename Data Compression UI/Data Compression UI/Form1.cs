@@ -26,27 +26,28 @@ namespace Data_Compression_UI
             InitializeComponent();
             Inicializar();
         }
+        private static void Inicializar()
+        {
+            filePaths.Add(@"Recursos\pequena.svg");
+            filePaths.Add(@"Recursos\media.svg");
+            filePaths.Add(@"Recursos\grande.svg");
+        }
 
         private void ButtonStart_Click(object sender, EventArgs e)
         {
             StreamWriter temp = null;
             foreach (string path in filePaths)
             {
-
-                temp = File.CreateText("gzip" + path.Split('\\')[1] + ".txt");
+                temp = File.CreateText("Logs\\gzip" + path.Split('\\')[1] + ".txt");
                 temp.Close();
-                temp = File.CreateText("bzip2" + path.Split('\\')[1] + ".txt");
+                temp = File.CreateText("Logs\\bzip2" + path.Split('\\')[1] + ".txt");
                 temp.Close();
 
-                ExecuteProgramm(csharpCompressionPath, path);
-                ExecuteProgramm(pythonCompressionPath, path);
+                if(checkBoxCSCompression.Checked)
+                    ExecuteProgramm(csharpCompressionPath, path);
+                if(checkBoxPythonCompression.Checked)
+                    ExecuteProgramm(pythonCompressionPath, path);
             }
-        }
-        private static void Inicializar()
-        {
-            filePaths.Add(@"Recursos\pequena.svg");
-            filePaths.Add(@"Recursos\media.svg");
-            filePaths.Add(@"Recursos\grande.svg");
         }
 
         private static void ExecuteProgramm(string path, string arg)
