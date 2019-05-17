@@ -21,7 +21,7 @@ namespace Compression
         /// <param name="dataUnit">The unit that will be saved in the log file</param>
         public override void Compress(FileInfo fInput = null, DataUnits dataUnit = DataUnits.Byte)
         {
-            StreamWriter fLog = File.AppendText("GZip" + fInput.name + ".txt");
+            StreamWriter fLog = File.AppendText("gzip" + fInput.Name + ".txt");
             Stopwatch timer = new Stopwatch();
             FileInfo info = null;
 
