@@ -17,12 +17,16 @@ namespace Data_Compression_UI
         //Program paths
         //Dicionario de programas
         private static Dictionary<string, string> programsPaths = new Dictionary<string, string>();
-        private static string csharpCompressionPath = @"CSCompression\Compression.exe";
-        private static string pythonCompressionPath = @"PythonCompression\source.py";
-        private static string dataAnalizer = @"DataAnalizer\sizechart.py";
-        
+
+        //Log files
+        private static List<string> logComPaths = new List<string>();
+        private static List<string> logDecPaths = new List<string>();
+
         //Benchmark files
         private static List<string> filePaths = new List<string>();
+
+        //Images names
+        private static List<string> images = new List<string>();
 
         public Form1()
         {
@@ -31,9 +35,21 @@ namespace Data_Compression_UI
         }
         private static void Inicializar()
         {
-            filePaths.Add(@"Recursos\pequena.svg");
-            filePaths.Add(@"Recursos\media.svg");
-            filePaths.Add(@"Recursos\grande.svg");
+            images.Add("pequena.svg");
+            images.Add("media.svg");
+            images.Add("grande.svg");
+
+            foreach (string path in images)
+            {
+                filePaths.Add("Recursos\\" + path);
+
+                //com_<algoritmo>_<path>
+                logComPaths.Add("Logs\\com_bzip2_" + path + ".txt");
+                logComPaths.Add("Logs\\com_gzip_" + path + ".txt");
+            }
+
+            logDecPaths.Add("Logs\\dec_bzip2.txt");
+            logDecPaths.Add("Logs\\dec_gzip.txt");
 
             programsPaths.Add("csharpCompression", "CSCompression\\Compression.exe");
             programsPaths.Add("pythomCompression", "PythonCompression\\source.py");
@@ -44,77 +60,101 @@ namespace Data_Compression_UI
 
         private static void GenerateLogFiles()
         {
-            System.IO.Directory.CreateDirectory("Temp");
+            Directory.CreateDirectory("Temp");
+
+            Directory.CreateDirectory("Logs");
 
             StreamWriter temp = null;
-            foreach (string path in filePaths)
-            {
-                temp = File.CreateText("Logs\\com_gzip_" + path.Split('\\')[1] + ".txt");
-                temp.Close();
-                temp = File.CreateText("Logs\\com_bzip2_" + path.Split('\\')[1] + ".txt");
-                temp.Close();
 
+            foreach (string path in logComPaths)
+            {
+                temp = File.CreateText(path);
+                temp.Close();
             }
-            temp = File.CreateText("Logs\\dec_bzip2.txt");
-            temp.Close();
-            temp = File.CreateText("Logs\\dec_gzip.txt");
-            temp.Close();
+
+            foreach (string path in logDecPaths)
+            {
+                temp = File.CreateText(path);
+                temp.Close();
+            }
         }
 
         private void ButtonStart_Click(object sender, EventArgs e)
         {
+            buttonStart.Enabled = false;
+            progressBarBenchmark.Value = 0;
+            progressBarBenchmark.Maximum = SetMaximumBenchmarkValue();
             GenerateLogFiles();
+
             foreach (string path in filePaths)
             {
-                if(checkBoxCSCompression.Checked)
-                    ExecuteProgramm(csharpCompressionPath, path);
-                if(checkBoxPythonCompression.Checked)
-                    ExecuteProgramm(pythonCompressionPath, path);
+                if (checkBoxCSharpBenchmark.Checked)
+                {
+                    ExecuteProgramm(programsPaths["csharpCompression"], path);
+                    progressBarBenchmark.Value += 1;
+                }
+                if (checkBoxPythonBenchmark.Checked)
+                {
+                    ExecuteProgramm(programsPaths["pythomCompression"], path);
+                    progressBarBenchmark.Value += 1;
+                }
             }
-
+                    
             if (checkBoxDelTempFiles.Checked)
                 Directory.Delete("Temp", true);
 
-            if (checkBoxGenerateCharts.Checked)
-                GenerateCharts();
+            if (checkBoxPythonBenchmark.Checked || checkBoxCSharpBenchmark.Checked)
+                if(checkBoxGenerateCharts.Checked)
+                    GenerateCharts();
+            else
+                if(checkBoxGenerateCharts.Checked)
+                    MessageBox.Show("You need to perform a benchmark to generate any chart.", "Error");
 
-            MessageBox.Show("Sucess.", "Operation ended");
+            //Se correu tudo bem mostra mensagem de sucesso.
+            //MessageBox.Show("Success.", "Operation has ended.");
 
+            buttonStart.Enabled = true;
+        }
+
+        private int SetMaximumBenchmarkValue()
+        {
+            int value = 0;
+            if (checkBoxCSharpBenchmark.Checked)
+                value += 1;
+            if (checkBoxPythonBenchmark.Checked)
+                value += 1;
+            return value * images.Count ;
         }
 
         private static void GenerateCharts()
         {
             //comp_<algortimo>_<nome_do_ficheiro>.txt
             //compressao: Tamanho, Tempo
+            foreach(string path in logComPaths)
+            {
 
-            ExecuteProgramm(programsPaths["comSizeChart"], "Logs\\com_gzip_pequena.svg.txt");
-            ExecuteProgramm(programsPaths["comTimeChart"], "Logs\\com_gzip_pequena.svg.txt");
-            ExecuteProgramm(programsPaths["comSizeChart"], "Logs\\com_gzip_media.svg.txt");
-            ExecuteProgramm(programsPaths["comTimeChart"], "Logs\\com_gzip_media.svg.txt");
-            ExecuteProgramm(programsPaths["comSizeChart"], "Logs\\com_gzip_grande.svg.txt");
-            ExecuteProgramm(programsPaths["comTimeChart"], "Logs\\com_gzip_grande.svg.txt");
-
-
-            ExecuteProgramm(programsPaths["comSizeChart"], "Logs\\com_bzip2_pequena.svg.txt");
-            ExecuteProgramm(programsPaths["comTimeChart"], "Logs\\com_bzip2_pequena.svg.txt");
-            ExecuteProgramm(programsPaths["comSizeChart"], "Logs\\com_bzip2_media.svg.txt");
-            ExecuteProgramm(programsPaths["comTimeChart"], "Logs\\com_bzip2_media.svg.txt");
-            ExecuteProgramm(programsPaths["comSizeChart"], "Logs\\com_bzip2_grande.svg.txt");
-            ExecuteProgramm(programsPaths["comTimeChart"], "Logs\\com_bzip2_grande.svg.txt");
-
+                ExecuteProgramm(programsPaths["comSizeChart"], path);
+                ExecuteProgramm(programsPaths["comTimeChart"], path);
+            }
             //descompressao: Tempo
+            foreach (string path in logDecPaths)
+            {
+                //Tempo de compressao
+            }
         }
 
         private static void ExecuteProgramm(string path, string arg)
         {
             ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.CreateNoWindow = false;
+            
             startInfo.FileName = path;
             startInfo.Arguments = arg;
-            Process p = Process.Start(startInfo);
-            while(!p.HasExited)
-                ;
-           
-        }
 
+            Process p = Process.Start(startInfo);
+
+            while (!p.HasExited)
+                ;
+        }
     }
 }

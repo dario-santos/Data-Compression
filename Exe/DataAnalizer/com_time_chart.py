@@ -30,6 +30,7 @@ def evaluate_file_path() -> str:
 def chart_generate(file_path):
     """Generates the chart using the data from file_path"""
 
+    #file_path = com_(algoritmo)_(nome do ficheiro).txt
     title = "Algorithm " + os.path.basename(file_path).split('_')[1]
     subtitle = "Compressed time - " + os.path.basename(file_path).split('_')[2].split(".txt")[0]
 
