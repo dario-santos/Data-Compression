@@ -1,0 +1,6 @@
+pequena.svg 0.17 CSharp
+pequena.svg 0.12 Python
+media.svg 0.19 CSharp
+media.svg 0.04 Python
+grande.svg 0.23 CSharp
+grande.svg 0.08 Python

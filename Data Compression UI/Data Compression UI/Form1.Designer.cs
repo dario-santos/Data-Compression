@@ -32,6 +32,8 @@
             this.checkBoxCSCompression = new System.Windows.Forms.CheckBox();
             this.checkBoxPythonCompression = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.checkBoxDelTempFiles = new System.Windows.Forms.CheckBox();
+            this.checkBoxGenerateCharts = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // buttonStart
@@ -77,11 +79,37 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Benchmark options";
             // 
+            // checkBoxDelTempFiles
+            // 
+            this.checkBoxDelTempFiles.AutoSize = true;
+            this.checkBoxDelTempFiles.Checked = true;
+            this.checkBoxDelTempFiles.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxDelTempFiles.Location = new System.Drawing.Point(77, 235);
+            this.checkBoxDelTempFiles.Name = "checkBoxDelTempFiles";
+            this.checkBoxDelTempFiles.Size = new System.Drawing.Size(184, 17);
+            this.checkBoxDelTempFiles.TabIndex = 4;
+            this.checkBoxDelTempFiles.Text = "Delete temp files after benchmark";
+            this.checkBoxDelTempFiles.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxGenerateCharts
+            // 
+            this.checkBoxGenerateCharts.AutoSize = true;
+            this.checkBoxGenerateCharts.Checked = true;
+            this.checkBoxGenerateCharts.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxGenerateCharts.Location = new System.Drawing.Point(77, 268);
+            this.checkBoxGenerateCharts.Name = "checkBoxGenerateCharts";
+            this.checkBoxGenerateCharts.Size = new System.Drawing.Size(180, 17);
+            this.checkBoxGenerateCharts.TabIndex = 5;
+            this.checkBoxGenerateCharts.Text = "Generate Chats after benchmark";
+            this.checkBoxGenerateCharts.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(483, 450);
+            this.Controls.Add(this.checkBoxGenerateCharts);
+            this.Controls.Add(this.checkBoxDelTempFiles);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.checkBoxPythonCompression);
             this.Controls.Add(this.checkBoxCSCompression);
@@ -99,6 +127,8 @@
         private System.Windows.Forms.CheckBox checkBoxCSCompression;
         private System.Windows.Forms.CheckBox checkBoxPythonCompression;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox checkBoxDelTempFiles;
+        private System.Windows.Forms.CheckBox checkBoxGenerateCharts;
     }
 }
 
