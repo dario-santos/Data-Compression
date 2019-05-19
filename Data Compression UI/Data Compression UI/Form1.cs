@@ -28,11 +28,14 @@ namespace Data_Compression_UI
         //Images names
         private static List<string> images = new List<string>();
 
+        private static bool canGenerateCharts = false;
         public Form1()
         {
             InitializeComponent();
             Inicializar();
+            treeViewChartList.ExpandAll();
         }
+
         private static void Inicializar()
         {
             images.Add("pequena.svg");
@@ -52,10 +55,10 @@ namespace Data_Compression_UI
             logDecPaths.Add("Logs\\dec_gzip.txt");
 
             programsPaths.Add("csharpCompression", "CSCompression\\Compression.exe");
-            programsPaths.Add("pythomCompression", "PythonCompression\\source.py");
-            programsPaths.Add("comSizeChart", "DataAnalizer\\com_size_chart.py");
-            programsPaths.Add("comTimeChart", "DataAnalizer\\com_time_chart.py");
-            programsPaths.Add("decTimeChart", "DataAnalizer\\dec_size_chart.py");
+            programsPaths.Add("pythomCompression", "PythonCompression\\source.exe");
+            programsPaths.Add("comSizeChart", "DataAnalizer\\com_size_chart.exe");
+            programsPaths.Add("comTimeChart", "DataAnalizer\\com_time_chart.exe");
+            programsPaths.Add("decTimeChart", "DataAnalizer\\dec_time_chart.exe");
         }
 
         private static void GenerateLogFiles()
@@ -81,6 +84,7 @@ namespace Data_Compression_UI
 
         private void ButtonStart_Click(object sender, EventArgs e)
         {
+            //Inicializaçao
             buttonStart.Enabled = false;
             progressBarBenchmark.Value = 0;
             progressBarBenchmark.Maximum = SetMaximumBenchmarkValue();
@@ -103,16 +107,13 @@ namespace Data_Compression_UI
             if (checkBoxDelTempFiles.Checked)
                 Directory.Delete("Temp", true);
 
-            if (checkBoxPythonBenchmark.Checked || checkBoxCSharpBenchmark.Checked)
-                if(checkBoxGenerateCharts.Checked)
-                    GenerateCharts();
+            if (checkBoxCSharpBenchmark.Checked || checkBoxPythonBenchmark.Checked)
+                canGenerateCharts = true;
             else
-                if(checkBoxGenerateCharts.Checked)
-                    MessageBox.Show("You need to perform a benchmark to generate any chart.", "Error");
+                canGenerateCharts = false;
 
-            //Se correu tudo bem mostra mensagem de sucesso.
-            //MessageBox.Show("Success.", "Operation has ended.");
-
+            MessageBox.Show("Completed.", "Operation has ended.");
+            progressBarBenchmark.Value = 0;
             buttonStart.Enabled = true;
         }
 
@@ -126,20 +127,19 @@ namespace Data_Compression_UI
             return value * images.Count ;
         }
 
-        private static void GenerateCharts()
+        private static void GenerateCharts(string logPath, bool type)
         {
             //comp_<algortimo>_<nome_do_ficheiro>.txt
             //compressao: Tamanho, Tempo
-            foreach(string path in logComPaths)
+            if (type)
             {
-
-                ExecuteProgramm(programsPaths["comSizeChart"], path);
-                ExecuteProgramm(programsPaths["comTimeChart"], path);
+                ExecuteProgramm(programsPaths["comSizeChart"], logPath);
+                ExecuteProgramm(programsPaths["comTimeChart"], logPath);
             }
-            //descompressao: Tempo
-            foreach (string path in logDecPaths)
+            else
             {
-                //Tempo de compressao
+                //Descompressao
+                ExecuteProgramm(programsPaths["decTimeChart"], logPath);
             }
         }
 
@@ -155,6 +155,43 @@ namespace Data_Compression_UI
 
             while (!p.HasExited)
                 ;
+        }
+
+        private void TreeViewChartList_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            //Gerar graficos desse nodo
+            if (e.Node.Nodes.Count == 0)
+            {
+                //Compressao
+                if (e.Node.Parent.Parent != null)
+                {
+                    if (e.Node.Parent.Text.Equals("GZip"))
+                    {
+                        if (e.Node.Text.Equals("Pequena"))
+                            GenerateCharts("Logs\\com_gzip_pequena.svg.txt", true);
+                        else if (e.Node.Text.Equals("Media"))
+                            GenerateCharts("Logs\\com_gzip_media.svg.txt", true);
+                        else if (e.Node.Text.Equals("Grande"))
+                            GenerateCharts("Logs\\com_gzip_grande.svg.txt", true);
+                    }
+                    else if (e.Node.Parent.Text.Equals("BZip2"))
+                    {
+                        if (e.Node.Text.Equals("Pequena"))
+                            GenerateCharts("Logs\\com_bzip2_pequena.svg.txt", true);
+                        else if (e.Node.Text.Equals("Media"))
+                            GenerateCharts("Logs\\com_bzip2_media.svg.txt", true);
+                        else if (e.Node.Text.Equals("Grande"))
+                            GenerateCharts("Logs\\com_bzip2_grande.svg.txt", true);
+                    }
+                }
+                else
+                {
+                    if (e.Node.Text.Equals("GZip"))
+                        GenerateCharts("Logs\\dec_gzip.txt", false);
+                    if (e.Node.Text.Equals("BZip2"))
+                        GenerateCharts("Logs\\dec_bzip2.txt", false);
+                }
+            }  
         }
     }
 }

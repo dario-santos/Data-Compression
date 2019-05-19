@@ -28,27 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Node0");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Node2");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Node3");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Node1", new System.Windows.Forms.TreeNode[] {
-            treeNode2,
-            treeNode3});
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Node4");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Node5");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Pequena");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Media");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Grande");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("GZip", new System.Windows.Forms.TreeNode[] {
+            treeNode13,
+            treeNode14,
+            treeNode15});
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Pequena");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Media");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Grande");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("BZip2", new System.Windows.Forms.TreeNode[] {
+            treeNode17,
+            treeNode18,
+            treeNode19});
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Compression", new System.Windows.Forms.TreeNode[] {
+            treeNode16,
+            treeNode20});
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("GZip");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("BZip2");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Decompression", new System.Windows.Forms.TreeNode[] {
+            treeNode22,
+            treeNode23});
             this.buttonStart = new System.Windows.Forms.Button();
             this.checkBoxCSharpBenchmark = new System.Windows.Forms.CheckBox();
             this.checkBoxPythonBenchmark = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.checkBoxDelTempFiles = new System.Windows.Forms.CheckBox();
-            this.checkBoxGenerateCharts = new System.Windows.Forms.CheckBox();
             this.progressBarBenchmark = new System.Windows.Forms.ProgressBar();
-            this.treeViewCharts = new System.Windows.Forms.TreeView();
+            this.treeViewChartList = new System.Windows.Forms.TreeView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonStart
             // 
-            this.buttonStart.Location = new System.Drawing.Point(203, 358);
+            this.buttonStart.Location = new System.Drawing.Point(210, 299);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(85, 42);
             this.buttonStart.TabIndex = 0;
@@ -101,60 +116,75 @@
             this.checkBoxDelTempFiles.Text = "Delete temp files after benchmark";
             this.checkBoxDelTempFiles.UseVisualStyleBackColor = true;
             // 
-            // checkBoxGenerateCharts
-            // 
-            this.checkBoxGenerateCharts.AutoSize = true;
-            this.checkBoxGenerateCharts.Checked = true;
-            this.checkBoxGenerateCharts.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxGenerateCharts.Location = new System.Drawing.Point(326, 34);
-            this.checkBoxGenerateCharts.Name = "checkBoxGenerateCharts";
-            this.checkBoxGenerateCharts.Size = new System.Drawing.Size(103, 17);
-            this.checkBoxGenerateCharts.TabIndex = 5;
-            this.checkBoxGenerateCharts.Text = "Generate Charts";
-            this.checkBoxGenerateCharts.UseVisualStyleBackColor = true;
-            // 
             // progressBarBenchmark
             // 
-            this.progressBarBenchmark.Location = new System.Drawing.Point(309, 377);
+            this.progressBarBenchmark.Location = new System.Drawing.Point(326, 318);
             this.progressBarBenchmark.Name = "progressBarBenchmark";
             this.progressBarBenchmark.Size = new System.Drawing.Size(100, 23);
             this.progressBarBenchmark.TabIndex = 6;
             // 
-            // treeViewCharts
+            // treeViewChartList
             // 
-            this.treeViewCharts.CheckBoxes = true;
-            this.treeViewCharts.Location = new System.Drawing.Point(50, 217);
-            this.treeViewCharts.Name = "treeViewCharts";
-            treeNode1.Checked = true;
-            treeNode1.Name = "Node0";
-            treeNode1.Text = "Node0";
-            treeNode2.Name = "Node2";
-            treeNode2.Text = "Node2";
-            treeNode3.Name = "Node3";
-            treeNode3.Text = "Node3";
-            treeNode4.Checked = true;
-            treeNode4.Name = "Node1";
-            treeNode4.Text = "Node1";
-            treeNode5.Name = "Node4";
-            treeNode5.Text = "Node4";
-            treeNode6.Name = "Node5";
-            treeNode6.Text = "Node5";
-            this.treeViewCharts.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode4,
-            treeNode5,
-            treeNode6});
-            this.treeViewCharts.Size = new System.Drawing.Size(170, 104);
-            this.treeViewCharts.TabIndex = 7;
+            this.treeViewChartList.Location = new System.Drawing.Point(269, 64);
+            this.treeViewChartList.Name = "treeViewChartList";
+            treeNode13.Name = "NodeComGzipPequena";
+            treeNode13.Text = "Pequena";
+            treeNode14.Name = "NodeComGzipMedia";
+            treeNode14.Text = "Media";
+            treeNode15.Name = "NodeComGzipGrande";
+            treeNode15.Text = "Grande";
+            treeNode16.Name = "NodeComGzip";
+            treeNode16.Text = "GZip";
+            treeNode17.Name = "NodeComBzip2Pequena";
+            treeNode17.Text = "Pequena";
+            treeNode18.Name = "NodeComBzip2Media";
+            treeNode18.Text = "Media";
+            treeNode19.Name = "NodeComBzip2Grande";
+            treeNode19.Text = "Grande";
+            treeNode20.Name = "NodeComBzip2";
+            treeNode20.Text = "BZip2";
+            treeNode21.Name = "NodeCom";
+            treeNode21.Text = "Compression";
+            treeNode22.Name = "NodeDecGzip";
+            treeNode22.Text = "GZip";
+            treeNode23.Name = "NodeDecBzip2";
+            treeNode23.Text = "BZip2";
+            treeNode24.Name = "NodeDec";
+            treeNode24.Text = "Decompression";
+            this.treeViewChartList.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode21,
+            treeNode24});
+            this.treeViewChartList.Size = new System.Drawing.Size(187, 184);
+            this.treeViewChartList.TabIndex = 7;
+            this.treeViewChartList.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.TreeViewChartList_NodeMouseDoubleClick);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(323, 299);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Progress Bar";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(244, 34);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Chart List";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(483, 450);
-            this.Controls.Add(this.treeViewCharts);
+            this.ClientSize = new System.Drawing.Size(483, 372);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.treeViewChartList);
             this.Controls.Add(this.progressBarBenchmark);
-            this.Controls.Add(this.checkBoxGenerateCharts);
             this.Controls.Add(this.checkBoxDelTempFiles);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.checkBoxPythonBenchmark);
@@ -175,9 +205,10 @@
         private System.Windows.Forms.CheckBox checkBoxPythonBenchmark;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkBoxDelTempFiles;
-        private System.Windows.Forms.CheckBox checkBoxGenerateCharts;
         private System.Windows.Forms.ProgressBar progressBarBenchmark;
-        private System.Windows.Forms.TreeView treeViewCharts;
+        private System.Windows.Forms.TreeView treeViewChartList;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 

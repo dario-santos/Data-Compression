@@ -1,2 +1,0 @@
-compress.svg 0.00 GZIP
-compress.svg 0.02 BZIP2
