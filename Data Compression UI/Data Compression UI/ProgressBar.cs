@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using System.Windows.Forms;
 
 namespace Data_Compression_UI
@@ -13,11 +13,9 @@ namespace Data_Compression_UI
         /// <returns></returns>
         public static int SetMaximum(CheckBox[] checkBoxes, int value)
         {
-            int aux = 0;
-
-            foreach(CheckBox checkBox in checkBoxes)
-                if(checkBox.Checked)
-                    aux++;
+            int aux = (from CheckBox checkBox in checkBoxes
+                       where checkBox.Checked
+                       select checkBox).Count();
 
             return aux * value;
         }
