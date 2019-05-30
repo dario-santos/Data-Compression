@@ -50,6 +50,7 @@
             System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Decompression", new System.Windows.Forms.TreeNode[] {
             treeNode10,
             treeNode11});
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.buttonStart = new System.Windows.Forms.Button();
             this.checkBoxCSharpBenchmark = new System.Windows.Forms.CheckBox();
             this.checkBoxPythonBenchmark = new System.Windows.Forms.CheckBox();
@@ -64,7 +65,7 @@
             // buttonStart
             // 
             this.buttonStart.Location = new System.Drawing.Point(280, 368);
-            this.buttonStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonStart.Margin = new System.Windows.Forms.Padding(4);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(113, 52);
             this.buttonStart.TabIndex = 0;
@@ -78,7 +79,7 @@
             this.checkBoxCSharpBenchmark.Checked = true;
             this.checkBoxCSharpBenchmark.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxCSharpBenchmark.Location = new System.Drawing.Point(67, 86);
-            this.checkBoxCSharpBenchmark.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxCSharpBenchmark.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxCSharpBenchmark.Name = "checkBoxCSharpBenchmark";
             this.checkBoxCSharpBenchmark.Size = new System.Drawing.Size(122, 21);
             this.checkBoxCSharpBenchmark.TabIndex = 1;
@@ -91,7 +92,7 @@
             this.checkBoxPythonBenchmark.Checked = true;
             this.checkBoxPythonBenchmark.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxPythonBenchmark.Location = new System.Drawing.Point(67, 133);
-            this.checkBoxPythonBenchmark.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxPythonBenchmark.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxPythonBenchmark.Name = "checkBoxPythonBenchmark";
             this.checkBoxPythonBenchmark.Size = new System.Drawing.Size(149, 21);
             this.checkBoxPythonBenchmark.TabIndex = 2;
@@ -114,7 +115,7 @@
             this.checkBoxDelTempFiles.Checked = true;
             this.checkBoxDelTempFiles.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxDelTempFiles.Location = new System.Drawing.Point(67, 182);
-            this.checkBoxDelTempFiles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxDelTempFiles.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxDelTempFiles.Name = "checkBoxDelTempFiles";
             this.checkBoxDelTempFiles.Size = new System.Drawing.Size(242, 21);
             this.checkBoxDelTempFiles.TabIndex = 4;
@@ -124,7 +125,7 @@
             // progressBarBenchmark
             // 
             this.progressBarBenchmark.Location = new System.Drawing.Point(435, 391);
-            this.progressBarBenchmark.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.progressBarBenchmark.Margin = new System.Windows.Forms.Padding(4);
             this.progressBarBenchmark.Name = "progressBarBenchmark";
             this.progressBarBenchmark.Size = new System.Drawing.Size(133, 28);
             this.progressBarBenchmark.TabIndex = 6;
@@ -132,7 +133,7 @@
             // treeViewChartList
             // 
             this.treeViewChartList.Location = new System.Drawing.Point(359, 79);
-            this.treeViewChartList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.treeViewChartList.Margin = new System.Windows.Forms.Padding(4);
             this.treeViewChartList.Name = "treeViewChartList";
             treeNode1.Name = "com_gzip_pequena";
             treeNode1.Text = "Pequena";
@@ -199,7 +200,8 @@
             this.Controls.Add(this.checkBoxPythonBenchmark);
             this.Controls.Add(this.checkBoxCSharpBenchmark);
             this.Controls.Add(this.buttonStart);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Compression Benchmark";
             this.TopMost = true;

@@ -4,6 +4,7 @@ namespace Data_Compression_UI
 {
     class Chart
     {
+        //ToDo: Mudar .exe para python 
         public static string comSize = "DataAnalizer\\com_size_chart.exe";
         public static string comTime = "DataAnalizer\\com_time_chart.exe";
         public static string decTime = "DataAnalizer\\dec_time_chart.exe";
